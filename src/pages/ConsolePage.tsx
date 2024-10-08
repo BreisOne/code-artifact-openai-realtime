@@ -455,6 +455,45 @@ export function ConsolePage() {
       }
     );
 
+    // Añadir herramienta para buscar artículos recientes
+    client.addTool(
+        {
+            name: 'search_articles',
+            description: 'Look for articles in the biorxiv database. Extract the title, abstract, and authors of the articles. and give a list to the user',
+            parameters: {
+                type: 'object',
+                properties: {
+                    server: {
+                      type: 'string',
+                      description: 'server to search in can be biorxiv or medrxiv',
+                    },
+                    most_recent: {
+                      type: 'number',
+                      description: 'Number of most recent articles to search.',
+                    },
+                    doi: {
+                      type: 'string',
+                      description: 'DOI of the article to search. This parameter can be extracted from the list of most recent papers in a previous call.',
+                    },
+                },
+                required: ['server'],
+            },
+        },
+        async ({ server, most_recent, doi }: { [key: string]: any }) => {
+            let url = `https://api.biorxiv.org/details/${server}/`;
+            if (most_recent) {
+                url += `${most_recent}/0/json`;
+            } else if (doi){
+                url += `${doi}/0/json`;
+            } else {
+                throw new Error('You must specify at least one search criterion.');
+            }
+            const response = await fetch(url);
+            const data = await response.json();
+            return data;
+        }
+    );
+
     // handle realtime events from client + server for event logging
     client.on('realtime.event', (realtimeEvent: RealtimeEvent) => {
       setRealtimeEvents((realtimeEvents) => {
