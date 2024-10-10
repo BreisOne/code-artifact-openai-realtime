@@ -22,7 +22,7 @@ import { WavRenderer } from '../utils/wav_renderer';
 import { X, Edit, Zap, ArrowUp, ArrowDown } from 'react-feather';
 import { Button } from '../components/button/Button';
 import { Toggle } from '../components/toggle/Toggle';
-import { Map } from '../components/Map';
+import { Artifact } from '../components/Artifact';
 
 import './ConsolePage.scss';
 import { isJsxOpeningLikeElement } from 'typescript';
@@ -124,7 +124,7 @@ export function ConsolePage() {
     lng: -122.418137,
   });
   const [marker, setMarker] = useState<Coordinates | null>(null);
-
+  const [generatedCode, setGeneratedCode] = useState<string>('');
   /**
    * Utility for formatting the timing of logs
    */
@@ -455,6 +455,28 @@ export function ConsolePage() {
       }
     );
 
+    client.addTool(
+      {
+        name: 'generate_code',
+        description: 'Generates code based on the user request.',
+        parameters: {
+          type: 'object',
+          properties: {
+            code: {
+              type: 'string',
+              description: 'The generated code to be saved.',
+            },
+          },
+          required: ['code'],
+        },
+      },
+      async ({ code }: { [key: string]: any }) => {
+        
+        setGeneratedCode(code);
+        return { ok: true };
+      }
+    );
+
     // Añadir herramienta para buscar artículos recientes
     client.addTool(
         {
@@ -482,9 +504,9 @@ export function ConsolePage() {
         async ({ server, most_recent, doi }: { [key: string]: any }) => {
             let url = `https://api.biorxiv.org/details/${server}/`;
             if (most_recent) {
-                url += `${most_recent}/0/json`;
+                url += `${most_recent}`;
             } else if (doi){
-                url += `${doi}/0/json`;
+                url += `${doi}`;
             } else {
                 throw new Error('You must specify at least one search criterion.');
             }
@@ -732,8 +754,8 @@ export function ConsolePage() {
         </div>
         <div className="content-right">
           <div className="content-block map">
-            <div className="content-block-title">get_weather()</div>
-            <div className="content-block-title bottom">
+            {/* <div className="content-block-title">get_weather()</div> */}
+            {/* <div className="content-block-title bottom">
               {marker?.location || 'not yet retrieved'}
               {!!marker?.temperature && (
                 <>
@@ -747,22 +769,17 @@ export function ConsolePage() {
                   🍃 {marker.wind_speed.value} {marker.wind_speed.units}
                 </>
               )}
-            </div>
+            </div> */}
             <div className="content-block-body full">
-              {coords && (
-                <Map
-                  center={[coords.lat, coords.lng]}
-                  location={coords.location}
-                />
-              )}
+                <Artifact generatedCode= {generatedCode} />
             </div>
           </div>
-          <div className="content-block kv">
+          {/* <div className="content-block kv">
             <div className="content-block-title">set_memory()</div>
             <div className="content-block-body content-kv">
               {JSON.stringify(memoryKv, null, 2)}
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
