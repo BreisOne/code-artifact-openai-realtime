@@ -458,13 +458,13 @@ export function ConsolePage() {
     client.addTool(
       {
         name: 'generate_code',
-        description: 'Generates code based on the user request.',
+        description: 'Generates code based on the user request using shadcn and tailwindcss. Import the shadcn components from /components/ui/{component_name} in lowercase. use fetch to get the data from the api if user mention that feature',
         parameters: {
           type: 'object',
           properties: {
             code: {
               type: 'string',
-              description: 'The generated code to be saved.',
+              description: 'The generated code to be set in the artifact.',
             },
           },
           required: ['code'],
