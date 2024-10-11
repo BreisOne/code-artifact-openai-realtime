@@ -7,7 +7,7 @@ that acts as a **Reference Client** (for browser and Node.js) and
 [`/src/lib/wavtools`](./src/lib/wavtools) which allows for simple audio
 management in the browser.
 
-This version of the Realtime Console  implements an adapter artifact component originally developed by [Nutlope](https://github.com/nutlope) for the [llamacoder project](https://github.com/Nutlope/llamacoder).
+This version of the Realtime Console implements an adapter artifact component originally developed by [Nutlope](https://github.com/nutlope) for the [llamacoder project](https://github.com/Nutlope/llamacoder). You can generate and preview react components using *shadcn components* and *tailwindcss*. Also perform fetch api calls just with voice. Try to explore further features!
 
 ![Artifact Demo](./readme/artifact-demo.png)
 
