@@ -1,4 +1,10 @@
-# OpenAI Realtime Console
+# Code artifact for OpenAI Realtime API
+
+![Artifact Demo](./readme/artifact-demo.png)
+
+This project is a fork of the [OpenAI Realtime Console](https://github.com/openai/openai-realtime-console) project.
+
+## OpenAI Realtime Console
 
 The OpenAI Realtime Console is intended as an inspector and interactive API reference
 for the OpenAI Realtime API. It comes packaged with two utility libraries,
@@ -7,9 +13,39 @@ that acts as a **Reference Client** (for browser and Node.js) and
 [`/src/lib/wavtools`](./src/lib/wavtools) which allows for simple audio
 management in the browser.
 
-This version of the Realtime Console implements an adapter artifact component originally developed by [Nutlope](https://github.com/nutlope) for the [llamacoder project](https://github.com/Nutlope/llamacoder). You can generate and preview react components using *shadcn components* and *tailwindcss*. Also perform fetch api calls just with voice. Try to explore further features!
+## Code Artifact (Claude artifact inspired)
 
-![Artifact Demo](./readme/artifact-demo.png)
+This version of the Realtime Console implements an adapter artifact component originally developed by [Nutlope](https://github.com/nutlope) for the [llamacoder project](https://github.com/Nutlope/llamacoder). You can generate and preview **react** components using **shadcn components** and **tailwindcss**. Also perform fetch api calls just with voice. Try to explore further features!
+
+## Function call to code generation 
+
+As simple as this:
+
+```typescript
+
+ client.addTool(
+      {
+        name: 'generate_code',
+        description: 'Generates code based on the user request using shadcn and tailwindcss. Import the shadcn components from /components/ui/{component_name} in lowercase. use fetch to get the data from the api if user mention that feature',
+        parameters: {
+          type: 'object',
+          properties: {
+            code: {
+              type: 'string',
+              description: 'The generated code to be set in the artifact.',
+            },
+          },
+          required: ['code'],
+        },
+      },
+      async ({ code }: { [key: string]: any }) => {
+        
+        setGeneratedCode(code);
+        return { ok: true };
+      }
+    );
+
+```	
 
 # Starting the console
 
