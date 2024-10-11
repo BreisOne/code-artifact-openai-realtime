@@ -7,7 +7,9 @@ that acts as a **Reference Client** (for browser and Node.js) and
 [`/src/lib/wavtools`](./src/lib/wavtools) which allows for simple audio
 management in the browser.
 
-<img src="/readme/realtime-console-demo.png" width="800" />
+This version of the Realtime Console  implements an adapter artifact component originally developed by [Nutlope](https://github.com/nutlope) for the [llamacoder project](https://github.com/Nutlope/llamacoder).
+
+![Artifact Demo](./readme/artifact-demo.png)
 
 # Starting the console
 
