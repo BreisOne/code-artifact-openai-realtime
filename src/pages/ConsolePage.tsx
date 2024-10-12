@@ -571,6 +571,39 @@ export function ConsolePage() {
           <img src="/openai-logomark.svg" />
           <span>realtime console</span>
         </div>
+        <button
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            borderRadius: '50px',
+            border: '1px solid #ccc',
+            backgroundColor: '#fff',
+            padding: '10px 20px',
+            fontSize: '14px',
+            fontWeight: '600',
+            color: '#333',
+            cursor: 'pointer',
+          }}
+          onClick={() => window.open('https://x.com/intent/follow?screen_name=brmascat', '_blank', 'noopener,noreferrer')}
+        >
+          <img
+            src="/twitter_avatar.jpg"
+            alt="Twitter logo"
+            width={35}
+            height={35}
+            style={{ borderRadius: '50%', marginRight: '5px' }}
+          />
+          <span style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+            <img
+              src="/image.png"
+              alt="Twitter logo"
+              width={15}
+              height={15}
+              style={{ display: 'inline-block', marginRight: '5px' }}
+            />
+            @brmascat
+          </span>
+        </button>
         <div className="content-api-key">
           {!LOCAL_RELAY_SERVER_URL && (
             <Button
