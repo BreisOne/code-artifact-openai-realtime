@@ -583,14 +583,23 @@ export function ConsolePage() {
             fontWeight: '600',
             color: '#333',
             cursor: 'pointer',
+            transition: 'background-color 0.3s, color 0.3s',
           }}
           onClick={() => window.open('https://x.com/intent/follow?screen_name=brmascat', '_blank', 'noopener,noreferrer')}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = '#f0f0f0';
+            e.currentTarget.style.color = '#000';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = '#fff';
+            e.currentTarget.style.color = '#333';
+          }}
         >
           <img
             src="/twitter_avatar.jpg"
             alt="Twitter logo"
-            width={35}
-            height={35}
+            width={25}
+            height={25}
             style={{ borderRadius: '50%', marginRight: '5px' }}
           />
           <span style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
