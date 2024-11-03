@@ -4,6 +4,11 @@
 
 This project is a fork of the [OpenAI Realtime Console](https://github.com/openai/openai-realtime-console) project.
 
+## Demo
+### Current Version
+
+[ai_voice_programmer_demo.webm](https://github.com/user-attachments/assets/ce124007-df1e-44d5-8785-0628560bf854)
+
 ## OpenAI Realtime Console
 
 The OpenAI Realtime Console is intended as an inspector and interactive API reference
